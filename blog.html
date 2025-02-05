@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Tools and Resources for Your Health & Wellness Journey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reuse existing styles from the main website */
+        :root {
+            --primary: #2A9D8F;
+            --secondary: #264653;
+            --accent: #E9C46A;
+            --text: #2B2D42;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, #2A9D8F 0%, #264653 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: var(--secondary);
+        }
+
+        .section {
+            padding: 4rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            width: 100%;
+            height: 06%;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .header h1 img {
+            position: left;
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Blog-specific styles */
+        .blog-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-content h3 {
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            position: relative;
+        }
+
+        .blog-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .blog-content ul {
+            list-style-type: none;
+            margin-left: 0;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content ul li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .blog-content ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .blog-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-content img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .blog-content .highlight {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-content .highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: left 0.6s;
+        }
+
+        .blog-content .highlight:hover::before {
+            left: 100%;
+        }
+
+        .blog-content .highlight p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .blog-content .btn-gradient {
+            display: inline-block;
+            margin-top: 1.5rem;
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-content .btn-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: left 0.6s;
+        }
+
+        .blog-content .btn-gradient:hover::before {
+            left: 100%;
+        }
+
+        .blog-content .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .blog-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>
+            <img src="Images\logo.png" alt="Sattva Sadhan" style="height: 43px;">
+        </h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a> <!-- Home link -->
+            <a href="index.html#about">About</a>
+            <a href="index.html#testimonials">Stories</a>
+            <a href="index.html#faq">FAQ</a>
+            <a href="index.html#contact" id="contact-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Blog Section -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Tools and Resources for Your Health & Wellness Journey</h2>
+        </div>
+        <div class="blog-content">
+            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Health & Wellness">
+            <p>At SattvaSadhan, we provide access to tools and resources designed to empower you on your journey toward better health. From educational materials to interactive tools, our resources are tailored to help you make informed decisions and track your progress effectively.</p>
+
+            <h3>1. Nutritional Assessment Tools</h3>
+            <ul>
+                <li><strong>Body Composition Analysis (BCA):</strong> Understand your body fat percentage, muscle mass, and metabolic rate.</li>
+                <li><strong>Calorie & Macronutrient Calculator:</strong> Plan your meals with precision based on your health goals.</li>
+                <li><strong>BMI & Ideal Weight Calculator:</strong> Know your ideal weight and set realistic goals.</li>
+                <li><strong>Dietary Intake Tracker:</strong> Log your meals and analyze your nutrient intake.</li>
+            </ul>
+
+            <h3>2. Wellness Monitoring Tools</h3>
+            <ul>
+                <li><strong>Blood Sugar Monitoring Guide:</strong> Track and manage your glucose levels effectively.</li>
+                <li><strong>Blood Pressure Log Sheet:</strong> Keep track of your readings to ensure heart health.</li>
+                <li><strong>Thyroid Symptom Tracker:</strong> Monitor symptoms and treatment progress.</li>
+                <li><strong>PCOS/PCOD Symptom Checklist:</strong> Evaluate and manage hormonal imbalances.</li>
+            </ul>
+
+            <h3>3. Educational Resources</h3>
+            <ul>
+                <li><strong>E-books:</strong> “The Ultimate Guide to Weight Loss”, “Managing PCOS through Nutrition”, “Diabetes-Friendly Recipes and Tips”.</li>
+                <li><strong>Wellness Blogs:</strong> Stay updated with the latest in nutrition, wellness, and homoeopathy.</li>
+                <li><strong>Videos & Webinars:</strong> Learn directly from our experts about managing chronic conditions, healthy eating, and mental wellness.</li>
+            </ul>
+
+            <h3>4. Interactive Tools for Lifestyle Changes</h3>
+            <ul>
+                <li><strong>Meal Planning App Recommendations:</strong> Simplify grocery shopping and meal prep.</li>
+                <li><strong>Stress Management Techniques:</strong> Guided meditation and breathing exercises for mental health.</li>
+                <li><strong>Sleep Quality Tracker:</strong> Evaluate and improve your sleep patterns for overall health.</li>
+            </ul>
+
+            <h3>5. Consultation Support</h3>
+            <ul>
+                <li><strong>Pre-Consultation Questionnaires:</strong> Prepare for your first visit by detailing your health history.</li>
+                <li><strong>Personalized Diet Plans:</strong> Receive customized plans designed for your specific health needs.</li>
+                <li><strong>Progress Tracker:</strong> Monitor changes in weight, symptoms, and overall well-being over time.</li>
+            </ul>
+
+            <h3>6. Printable Resources</h3>
+            <ul>
+                <li><strong>Healthy Eating Charts:</strong> Portion control, balanced plate, and food groups.</li>
+                <li><strong>Weekly Meal Planners:</strong> Plan meals with space for calorie and nutrient goals.</li>
+                <li><strong>Grocery Lists:</strong> Handy templates tailored to weight loss, diabetes, or PCOS needs.</li>
+            </ul>
+
+            <div class="highlight">
+                <p><strong>Why Use Our Tools & Resources?</strong></p>
+                <ul>
+                    <li><strong>Personalized for You:</strong> Every resource is designed to align with your health goals and lifestyle.</li>
+                    <li><strong>Expert-Approved:</strong> Backed by scientific research and curated by our team of professionals.</li>
+                    <li><strong>Accessible Anytime:</strong> Use these tools and resources at your convenience to stay on track.</li>
+                </ul>
+            </div>
+
+            <p>Empower your wellness journey with the right tools and expert guidance. Explore our resources and take the first step toward a healthier, happier you!</p>
+            <a href="index.html#services" class="btn-gradient">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Contact Us:</p>
+        <p>📞 +91 9063286675 | 📧 sattvasadhan3@gmail.com</p>
+        <p>📍 Shree Satya Health Center, Health City, Arilova, Visakhapatnam</p>
+        <p>&copy; 2025 SattvaSadhan. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // WhatsApp Chat Integration
+        document.getElementById('contact-link').addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            const phoneNumber = "+919063286675"; // WhatsApp number
+            const message = "Hello, I would like to get in touch with SattvaSadhan."; // Predefined message
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`; // Create WhatsApp URL
+            window.open(url, '_blank'); // Open in a new tab
+        });
+    </script>
+</body>
+</html>

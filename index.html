@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SattvaSadhan | Holistic Wellness Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2A9D8F;
+            --secondary: #264653;
+            --accent: #E9C46A;
+            --text: #2B2D42;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, #2A9D8F 0%, #264653 100%);
+        }
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+    
+        body {
+            background: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+    
+        h1, h2, h3 {
+            color: var(--secondary);
+        }
+    
+        .section {
+            padding: 4rem 5%;
+        }
+    
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+    
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+    
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+    
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+    
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+    
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+    
+        /* Animated Header */
+        .header {
+            position: fixed;
+            width: 100%;
+            height: 06%;
+            padding: 1.5rem 5%;
+            background: white; /* Solid white background (fully opaque) */
+            backdrop-filter: none; /* Remove blur effect */
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .header.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+    
+        .header h1 {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+    
+        .header h1 img {
+            position: left;
+            height: 50px;
+            width: auto;
+        }
+    
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+    
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+    
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+    
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+    
+        /* Hero Section with Parallax Effect */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(42, 157, 143, 0.9), rgba(38, 70, 83, 0.9)),
+                        url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 0 5%;
+        }
+    
+        .hero-content {
+            max-width: 800px;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+        }
+    
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    
+        /* BMI Calculator */
+        .bmi-calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin: 2rem auto;
+            max-width: 400px;
+            text-align: center;
+        }
+    
+        .bmi-calculator h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+    
+        .bmi-calculator input,
+        .bmi-calculator select {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+    
+        .bmi-calculator button {
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+    
+        .bmi-calculator .result {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+    
+        /* Modern Card Design */
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient);
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+    
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+    
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+    
+        /* Grid Layout with Masonry Effect */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 5%;
+        }
+    
+        /* Vertical Services Section with Background Images */
+        .services-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        .service-card-vertical {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+    
+        .service-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay for better text visibility */
+            transition: background 0.5s ease;
+        }
+    
+        .service-card-vertical:hover .service-overlay {
+            background: rgba(0, 0, 0, 0.8); /* Darker overlay on hover */
+        }
+    
+        .service-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            transition: transform 0.5s ease;
+        }
+    
+        .service-card-vertical:hover .service-content {
+            transform: translateY(-10px); /* Lift content on hover */
+        }
+    
+        .service-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+    
+        .service-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+    
+        .service-content ul li {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+    
+        /* Animated Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+    
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+    
+        /* Modern Form Styling */
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+    
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+    
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            transition: border-color 0.3s ease;
+        }
+    
+        .form-input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+    
+        /* Interactive Testimonials */
+        .testimonial-carousel {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 2rem 5%;
+        }
+    
+        .testimonial-card {
+            min-width: 300px;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            scroll-snap-align: start;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+    
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+    
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    
+        footer a:hover {
+            text-decoration: underline;
+        }
+    
+        /* Hover Effects */
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+    
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+    
+        /* Gradient Buttons */
+        .btn-gradient {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+    
+        .btn-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: left 0.6s;
+        }
+    
+        .btn-gradient:hover::before {
+            left: 100%;
+        }
+    
+        /* Team Member Cards */
+        .team-member {
+            text-align: center;
+        }
+    
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 4px solid var(--primary);
+        }
+    
+        .team-member h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+    
+        .team-member p {
+            color: var(--text);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+    
+        .team-member ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+    
+        .team-member ul li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+    
+        .read-more-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.3s ease;
+        }
+    
+        .read-more-btn:hover {
+            background: var(--primary);
+        }
+    
+        .read-more-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            margin-top: 1rem;
+            padding: 0 1rem;
+            background: var(--light);
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+    
+        .read-more-content p {
+            margin-bottom: 1rem;
+        }
+    
+        .read-more-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+    
+        .read-more-content ul li {
+            margin-bottom: 0.5rem;
+        }
+    
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+    
+            .hero {
+                height: 80vh;
+            }
+    
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+    
+            .service-card-vertical {
+                height: 300px;
+            }
+    
+            .service-content {
+                padding: 1rem;
+            }
+    
+            .service-content h3 {
+                font-size: 1.5rem;
+            }
+    
+            .service-content ul li {
+                font-size: 0.9rem;
+            }
+    
+            /* FAQ Section Styling */
+            #faq .service-card ul {
+                list-style-type: disc;
+                margin-left: 1.5rem;
+                margin-top: 0.5rem;
+            }
+    
+            #faq .service-card ul li {
+                margin-bottom: 0.5rem;
+            }
+    
+            #faq .service-card h3 {
+                color: var(--primary);
+                margin-bottom: 1rem;
+            }
+        }
+        /* Mission and Vision Section */
+    .mission-vision {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .mission, .vision {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .mission:hover, .vision:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .mission h3, .vision h3 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+    }
+
+    .mission p, .vision p {
+        color: var(--text);
+        line-height: 1.8;
+    }
+
+    /* Who We Are Section */
+    .who-we-are {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        margin-bottom: 4rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .who-we-are:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .who-we-are h3 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+    }
+
+    .who-we-are p {
+        color: var(--text);
+        line-height: 1.8;
+    }
+
+    /* Consultants Section */
+    .consultants-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .consultant-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .consultant-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .consultant-image img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .consultant-details {
+        padding: 1.5rem;
+    }
+
+    .consultant-details h4 {
+        color: var(--secondary);
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .consultant-details p {
+        color: var(--text);
+        margin-bottom: 1rem;
+        font-weight: 500;
+    }
+
+    .consultant-details ul {
+        list-style-type: disc;
+        margin-left: 1.5rem;
+        color: var(--text);
+    }
+
+    .consultant-details ul li {
+        margin-bottom: 0.5rem;
+    }
+    /* Testimonials Section */
+.testimonial-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 2rem;
+    padding: 2rem 5%;
+    scroll-behavior: smooth;
+}
+
+.testimonial-card {
+    flex: 0 0 auto;
+    width: 300px;
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    scroll-snap-align: start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.testimonial-card p {
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.testimonial-card strong {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+/* Scrollbar Styling */
+.testimonial-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.testimonial-carousel::-webkit-scrollbar-track {
+    background: var(--light);
+    border-radius: 4px;
+}
+
+.testimonial-carousel::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>
+            <img src="Images\logo.png" alt="Sattva Sadhan" style="height: 43px;">
+        </h1>
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Stories</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact" id="contact-link">Contact</a>
+            <a href="blog.html">Blog</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">Transform Your Health Journey</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Holistic wellness through personalized nutrition and integrative care</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfeuycsR4omrbMCNfIi9eKo-z9hcoaRaS0NA_o3TsF-Rr770g/viewform" target="_blank" class="btn-gradient">Book Now</a>
+        </div>
+    </section>
+
+    <!-- BMI Calculator Section -->
+    <section class="bmi-calculator">
+        <h2>BMI Calculator</h2>
+        <select id="gender" class="form-input">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <input type="number" id="height" placeholder="Height (cm)" required>
+        <input type="number" id="weight" placeholder="Weight (kg)" required>
+        <button onclick="calculateBMI()">Calculate BMI</button>
+        <div class="result" id="bmi-result"></div>
+    </section>
+
+    <!-- About Us Section -->
+<section id="about" class="section">
+    <div class="section-title">
+        <h2>About Us</h2>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="mission-vision">
+        <div class="mission">
+            <h3>Our Mission</h3>
+            <p>To empower individuals to achieve optimal health and wellness through personalized, evidence-based nutrition and lifestyle solutions. Our mission is to address a wide range of health conditions, including weight management, PCOS, PCOD, diabetes, thyroid disorders, hypertension, heart health, kidney health, stress management, digestive issues, food allergies, intolerances, bone health, pregnancy and lactation care, skin and hair health, and hormonal imbalances & many more. We aim to promote sustainable, practical, and holistic approaches to health, helping every individual lead a vibrant, disease-free life.</p>
+        </div>
+        <div class="vision">
+            <h3>Our Vision</h3>
+            <p>To be a trusted leader in the health and wellness industry, transforming lives by offering comprehensive solutions for managing weight, hormonal imbalances, lifestyle diseases, and other chronic health conditions. Our vision is to build a healthier world where individuals thrive in body and mind, with access to tailored nutritional care that fosters long-term well-being and resilience against health challenges.</p>
+            <p>To become a leading hub for holistic health and wellness by combining the expertise of nutrition, psychology, general medicine, and pharmaceutical sciences. Our vision is to provide integrative care that supports individuals in overcoming health challenges and achieving sustainable well-being. Through collaboration and innovation, we aim to build a healthier and more informed community.</p>
+        </div>
+    </div>
+
+    <!-- Who We Are Section -->
+    <div class="who-we-are">
+        <h3>Who We Are</h3>
+        <p>SattvaSadhan is led by Kalyan Ravada, a highly qualified and experienced dietician specializing in weight management, diabetes care, thyroid health, and addressing lifestyle disorders such as PCOS, hypertension, and more. With a passion for transforming lives, we aim to provide tailored solutions that are practical, sustainable, and result-driven.</p>
+    </div>
+
+    <!-- Consultants Section -->
+    <div class="consultants-grid">
+        <!-- Kalyan Ravada -->
+        <div class="consultant-card">
+            <div class="consultant-image">
+                <img src="images\Kalyan Kishore.jpg" alt="Kalyan Ravada">
+            </div>
+            <div class="consultant-details">
+                <h4>Kalyan Ravada</h4>
+                <p style="text-align: center;"><strong>Founder</strong></p>
+                <p><strong>Consultant Dietician & Nutritionist</strong></p>
+                <ul>
+                    <li>M.Sc. Food Science and Nutrition</li>
+                    <li>Psychology of Stress & Health (IITG)</li>
+                    <li>Member of Nutrition Society of India</li>
+                    <li>Life Member of IAPEN</li>
+                    <li>Faculty in Andhra University</li>
+                    <li>Former Asst. Professor of Nutrition at Southern Educational Institutions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dr. M. Vani Lakshmi -->
+        <div class="consultant-card">
+            <div class="consultant-image">
+                <img src="images\M.Vani Lakshmi.jpg" alt="Dr. M. Vani Lakshmi">
+            </div>
+            <div class="consultant-details">
+                <h4>Dr. M. Vani Lakshmi</h4>
+                <p><strong>Senior Consultant Physician</strong></p>
+                <ul>
+                    <li>MBBS, M.D (USA)</li>
+                    <li>20+ years of experience</li>
+                    <li>Expert in treating Diabetes, Hypertension, Thyroid problems, All fevers, respiratory infections, skin issues, headaches, sleep disorders, depression, anxiety, etc.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dr. Sankeerthana Thota -->
+        <div class="consultant-card">
+            <div class="consultant-image">
+                <img src="Images\Sankeerthana_Thota.jpg" alt="Dr. Sankeerthana Thota">
+            </div>
+            <div class="consultant-details">
+                <h4>Dr. Sankeerthana Thota</h4>
+                <p><strong>Homoeopathic Dermatologist</strong></p>
+                <ul>
+                    <li>BHMS, FCHD</li>
+                    <li>Expertise in treating all dermatological conditions</li>
+                    <li>Chronic conditions like arthritis, migraine, thyroid, diabetes, hypertension, and gynaecological problems</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dr. K. Pavani -->
+        <div class="consultant-card">
+            <div class="consultant-image">
+                <img src="images\Pavani.jpg" alt="Kalyan Ravada">
+            </div>
+            <div class="consultant-details">
+                <h4>Dr. K. Pavani</h4>
+                <p><strong>Pharmaceutical Care Expert</strong></p>
+                <ul>
+                    <li>PharmD Graduate</li>
+                    <li>Specializes in medication management and supplement recommendations</li>
+                    <li>Expert in optimizing treatment plans for chronic diseases</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Services Section -->
+<section id="services" class="section">
+    <div class="section-title">
+        <h2>Our Services</h2>
+    </div>
+    <div class="services-grid">
+        <!-- Personalized Nutrition Services -->
+        <div class="service-card-vertical" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+            <div class="service-overlay"></div>
+            <div class="service-content">
+                <h3>Personalized Nutrition Services</h3>
+                <ul>
+                    <li>Weight Management: Tailored diet plans for weight loss or weight gain.</li>
+                    <li>PCOS/PCOD Management: Hormone-balancing diets and lifestyle guidance.</li>
+                    <li>Diabetes Management: Therapeutic diets for blood sugar control.</li>
+                    <li>Thyroid Health: Diet plans to support thyroid function and metabolic health.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Lifestyle Disease Management -->
+        <div class="service-card-vertical" style="background-image: url('https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+            <div class="service-overlay"></div>
+            <div class="service-content">
+                <h3>Lifestyle Disease Management</h3>
+                <ul>
+                    <li>Hypertension (high blood pressure).</li>
+                    <li>Heart health (cholesterol and cardiovascular care).</li>
+                    <li>Kidney health (renal diet plans).</li>
+                    <li>Bone health (osteoporosis prevention and support).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Women’s Health -->
+        <div class="service-card-vertical" style="background-image: url('https://images.unsplash.com/photo-1527613426441-4da17471b66d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+            <div class="service-overlay"></div>
+            <div class="service-content">
+                <h3>Women’s Health</h3>
+                <ul>
+                    <li>Pregnancy and lactation care.</li>
+                    <li>Menstrual health and hormone regulation.</li>
+                    <li>Skin and hair health through nutrition.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Specialized Diet Plans -->
+        <div class="service-card-vertical" style="background-image: url('https://images.unsplash.com/photo-1514995669114-6081e934b693?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+            <div class="service-overlay"></div>
+            <div class="service-content">
+                <h3>Specialized Diet Plans</h3>
+                <ul>
+                    <li>Stress and anxiety management through diet.</li>
+                    <li>Food allergies and intolerances (gluten-free, lactose-free diets).</li>
+                    <li>Digestive health (IBS, constipation, acidity).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Corporate Wellness Programs -->
+        <div class="service-card-vertical" style="background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+            <div class="service-overlay"></div>
+            <div class="service-content">
+                <h3>Corporate Wellness Programs</h3>
+                <ul>
+                    <li>Nutrition workshops for workplaces.</li>
+                    <li>Stress management sessions in collaboration with a psychologist.</li>
+                    <li>Health challenges (weight loss, hydration, mindful eating).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pediatric and Adolescent Nutrition -->
+        <div class="service-card-vertical" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+            <div class="service-overlay"></div>
+            <div class="service-content">
+                <h3>Pediatric and Adolescent Nutrition</h3>
+                <ul>
+                    <li>Diet plans for growing children and teenagers.</li>
+                    <li>Nutrition for enhancing focus, energy, and immunity.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Collaborative Services -->
+        <div class="service-card-vertical" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+            <div class="service-overlay"></div>
+            <div class="service-content">
+                <h3>Collaborative Services</h3>
+                <ul>
+                    <li>Psychology Services: Mental health counseling for stress, emotional eating, and behavioral changes.</li>
+                    <li>General Medicine Support: Medical advice for lifestyle-related diseases.</li>
+                    <li>Pharmaceutical Guidance: Medication management and supplement recommendations.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Wellness Programs -->
+        <div class="service-card-vertical" style="background-image: url('https://images.unsplash.com/photo-1514995669114-6081e934b693?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+            <div class="service-overlay"></div>
+            <div class="service-content">
+                <h3>Wellness Programs</h3>
+                <ul>
+                    <li>Detox and cleansing diets.</li>
+                    <li>Diets for anti-aging and vitality.</li>
+                    <li>Immune-boosting meal plans.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Workshops and Seminars -->
+        <div class="service-card-vertical" style="background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+            <div class="service-overlay"></div>
+            <div class="service-content">
+                <h3>Workshops and Seminars</h3>
+                <ul>
+                    <li>Cooking classes for healthy meals.</li>
+                    <li>Public awareness sessions on nutrition and wellness.</li>
+                    <li>Monthly wellness challenges and competitions.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Testimonials Section -->
+<section id="testimonials" class="section">
+    <div class="section-title">
+        <h2>Client’s Success Stories</h2>
+    </div>
+    <div class="testimonial-carousel">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+            <h3>From PCOS Struggles to Wellness Victory</h3>
+            <p>“I had been battling PCOS for years, trying everything without success. After consulting with the team at SattvaSadhan, I received a personalized diet plan and holistic guidance tailored to my needs. Within three months, my symptoms reduced significantly, and my energy levels skyrocketed. I am finally in control of my health!”</p>
+            <p><strong>– Akhila R., 28</strong></p>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+            <h3>Reversing Diabetes Through Nutrition</h3>
+            <p>“As a diabetic for over 10 years, I thought I had no choice but to live with fluctuating sugar levels. Kalyan Ravada’s personalized nutrition counseling changed my life. My blood sugar is now under control, and I’ve even reduced my medication. The team’s consistent support and education were invaluable!”</p>
+            <p><strong>– Ramesh K., 52</strong></p>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+            <h3>Overcoming Chronic Migraines Naturally</h3>
+            <p>“I struggled with migraines for years until I met the team at SattvaSadhan. Their holistic homoeopathic remedies and lifestyle advice worked wonders. It’s been six months, and I’ve had no migraines. I never thought natural remedies could be so effective.”</p>
+            <p><strong>– Shravani T., 34</strong></p>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="testimonial-card">
+            <h3>Postpartum Weight Loss Success</h3>
+            <p>“After my pregnancy, losing weight felt impossible. With Dt. Kalyan’s help, I followed a nutrition plan that fit my routine and supported breastfeeding. In six months, I lost 15 kgs and regained my confidence. The best part? It didn’t feel like a diet at all.”</p>
+            <p><strong>– Neha P., 30</strong></p>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="testimonial-card">
+            <h3>Managing Hypertension Without Medications</h3>
+            <p>“After years of taking pills for hypertension, I finally found a natural solution at SattvaSadhan. With the team’s help, I incorporated a heart-healthy diet, stress management techniques, and supplements. My blood pressure is stable now, and I feel better than ever.”</p>
+            <p><strong>– Krishna V., 47</strong></p>
+        </div>
+    </div>
+</section>
+
+    <!-- FAQ Section -->
+<section id="faq" class="section">
+    <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>What services do you offer at SattvaSadhan?</h3>
+            <p>We provide personalized nutrition and wellness solutions for various health conditions, including weight loss, PCOS/PCOD, diabetes, thyroid issues, hypertension, pregnancy and lactation nutrition, skin and hair health, stress management, and more. We also offer holistic care through our collaboration with a psychologist, physician, and homoeopathy expert.</p>
+        </div>
+        <div class="service-card">
+            <h3>How do I book an appointment?</h3>
+            <p>You can book an appointment by clicking on the “Book Now” button on our website, filling out the Google Form with your details, or contacting us via phone/WhatsApp at +91 9063286675.</p>
+        </div>
+        <div class="service-card">
+            <h3>Do you provide online consultations?</h3>
+            <p>Yes, we offer both in-person and online consultations for your convenience. You can choose your preferred mode while booking your appointment.</p>
+        </div>
+        <div class="service-card">
+            <h3>Can I consult for multiple health issues at once?</h3>
+            <p>Absolutely! During your consultation, we’ll discuss all your health concerns and design a comprehensive plan to address them effectively.</p>
+        </div>
+        <div class="service-card">
+            <h3>What should I expect during my first consultation?</h3>
+            <p>During your initial consultation, our expert will:
+                <ul>
+                    <li>Discuss your health history and current concerns.</li>
+                    <li>Perform a nutritional assessment.</li>
+                    <li>Provide a personalized plan tailored to your needs.</li>
+                </ul>
+                You’ll also have the opportunity to ask questions and understand your journey ahead.
+            </p>
+        </div>
+        <div class="service-card">
+            <h3>Do you provide meal plans and follow-ups?</h3>
+            <p>Yes, we provide personalized meal plans based on your health goals and condition. Regular follow-ups ensure you stay on track and achieve your desired results.</p>
+        </div>
+        <div class="service-card">
+            <h3>Are your treatments and consultations affordable?</h3>
+            <p>We aim to provide high-quality, result-oriented care at reasonable costs. Our goal is to make wellness accessible to everyone.</p>
+        </div>
+        <div class="service-card">
+            <h3>Can I consult if I’m already on medications or treatment?</h3>
+            <p>Yes, our team works alongside your current medical treatment. We collaborate with physicians to ensure your diet and wellness plan complements your medications.</p>
+        </div>
+        <div class="service-card">
+            <h3>Do you offer corporate wellness programs?</h3>
+            <p>Yes, we provide tailored corporate wellness programs to improve the health and productivity of employees through workshops, nutrition counseling, and stress management techniques.</p>
+        </div>
+        <div class="service-card">
+            <h3>How do I contact you if I have more questions?</h3>
+            <p>Feel free to reach out to us at:
+                <ul>
+                    <li>Phone/WhatsApp: +91 9063286675</li>
+                    <li>Email: sattvasadhan3@gmail.com</li>
+                </ul>
+                We’ll be happy to assist you!
+            </p>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Contact Us:</p>
+        <p>📞 +91 9063286675 | 📧 sattvasadhan3@gmail.com</p>
+        <p>📍 Shree Satya Health Center, Health City, Arilova, Visakhapatnam</p>
+        <p>&copy; 2025 SattvaSadhan. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // BMI Calculator
+        function calculateBMI() {
+            const gender = document.getElementById('gender').value;
+            const height = parseFloat(document.getElementById('height').value) / 100;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const bmi = (weight / (height * height)).toFixed(2);
+            let resultText = '';
+
+            if (bmi < 18.5) {
+                resultText = `Your BMI is ${bmi} (Underweight)`;
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                resultText = `Your BMI is ${bmi} (Normal Weight)`;
+            } else if (bmi >= 25 && bmi < 29.9) {
+                resultText = `Your BMI is ${bmi} (Overweight)`;
+            } else {
+                resultText = `Your BMI is ${bmi} (Obese)`;
+            }
+
+            document.getElementById('bmi-result').textContent = resultText;
+        }
+
+        // Intersection Observer for Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .section').forEach(el => observer.observe(el));
+    </script>
+    <script>
+        function toggleReadMore(id) {
+            const content = document.getElementById(id);
+            const button = content.previousElementSibling;
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                content.style.padding = "0 1rem";
+                button.textContent = "Read More";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.padding = "1rem";
+                button.textContent = "Read Less";
+            }
+        }
+    </script>
+     <!-- Add the WhatsApp script here -->
+     <script>
+        // WhatsApp Chat Integration
+        document.getElementById('contact-link').addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            const phoneNumber = "+919063286675"; // WhatsApp number
+            const message = "Hello, I would like to get in touch with SattvaSadhan."; // Predefined message
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`; // Create WhatsApp URL
+            window.open(url, '_blank'); // Open in a new tab
+        });
+    </script>
+</body>
+</html>
